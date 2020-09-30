@@ -13,4 +13,17 @@ test_expect_success "'ipfs pin ls' works" '
   ipfs pin ls | wc -l | grep 9
 '
 
+test_expect_success "cleanup repo" '
+  rm -rf "$IPFS_PATH"
+'
+
+test_expect_success "'ipfs init --profile=badger2ds' succeeds" '
+  BITS="2048" &&
+  ipfs init --profile=badger2ds
+'
+
+test_expect_success "'ipfs pin ls' works" '
+  ipfs pin ls | wc -l | grep 9
+'
+
 test_done

@@ -51,6 +51,22 @@ Uses [badger](https://github.com/dgraph-io/badger) as a key value store.
 }
 ```
 
+## badger2ds
+
+Uses [badger2](https://github.com/dgraph-io/badger) as a key value store.
+
+* `syncWrites`: Flush every write to disk before continuing. Setting this to false is safe as go-ipfs will automatically flush writes to disk before and after performing critical operations like pinning. However, you can set this to true to be extra-safe (at the cost of a 2-3x slowdown when adding files).
+* `truncate`: Truncate the DB if a partially written sector is found (defaults to true). There is no good reason to set this to false unless you want to manually recover partially written (and unpinned) blocks if go-ipfs crashes half-way through a adding a file.
+
+```json
+{
+	"type": "badger2ds",
+	"path": "<location of badger2 inside repo>",
+	"syncWrites": true|false,
+	"truncate": true|false,
+}
+```
+
 ## mount
 
 Allows specified datastores to handle keys prefixed with a given path.
